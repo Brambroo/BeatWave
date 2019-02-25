@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Wave Generation script: derived from https://www.youtube.com/watch?v=f6cAAjMfPs8&list=
+ * 
+ * Mainly used for testing at the moment, later the audio analysis will be used to feed the wave movement and will be changed acordingly
+ * 
+ **/
 public class WaveGenerator : MonoBehaviour
 {
     [Range (0.1f,20.0f)] //Creates a slider in the inspector
@@ -36,6 +42,9 @@ public class WaveGenerator : MonoBehaviour
         wavesEnabled = true;
     }
 
+    /**
+     * Updates the values for the children if there are any
+     * */
     public void Update()
     {
         Generate();
@@ -52,6 +61,9 @@ public class WaveGenerator : MonoBehaviour
         }
     }
 
+    /**
+     * Generates the waves
+     * */
     private void Generate()
     {
         plane = this.GetComponent<MeshFilter>().mesh;
@@ -94,6 +106,10 @@ public class WaveGenerator : MonoBehaviour
         collider.sharedMesh = plane;
     }
 
+    /**
+     * Changes the position of the mesh's verticies
+     * Perlin function will be replaced when audio analysis is done
+     * */
     private void DetermineMovement(int columns, int rows)
     {
         if (wavesEnabled)
@@ -107,18 +123,7 @@ public class WaveGenerator : MonoBehaviour
                 (verticies[columns].y + this.gameObject.transform.position.y) / detailAmount) * frequency;
             verticies[columns].z -= rows;
         }
-
      
     }
 
-    IEnumerator Example()
-    {
-        print(Time.time);
-        yield return new WaitForSecondsRealtime(1);
-        print(Time.time);
-        while (true)
-        {
-            Generate();
-        }
-    }
 }
