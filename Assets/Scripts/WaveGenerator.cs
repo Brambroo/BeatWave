@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 /**
  * Wave Generation script: derived from https://www.youtube.com/watch?v=f6cAAjMfPs8&list=
@@ -19,34 +20,45 @@ public class WaveGenerator : MonoBehaviour
     [Range(0.1f, 30.0f)]
     public float speed = 5.0f;
 
-    public bool wavesEnabled;
+    public bool sendWave;
 
     public WaveGenerator[] children;
 
     private Mesh plane;
     private Vector3[] verticies;
+    private Vector3[] defaultVerticies;
 
     private Mesh otherPlane;
+    private AudioAnalysis analysis;
+    public int bpm;
+    //private Thread th;
+    //private bool endedThread = false;
 
     public void Start()
     {
         if(this.gameObject.name == "Plane")
         {
             children = new WaveGenerator[] { GameObject.Find("Plane2").GetComponentInChildren<WaveGenerator>(), GameObject.Find("Plane3").GetComponentInChildren<WaveGenerator>(),
-            GameObject.Find("Plane4").GetComponentInChildren<WaveGenerator>()};
+            GameObject.Find("Plane4").GetComponentInChildren<WaveGenerator>(), GameObject.Find("Plane5").GetComponentInChildren<WaveGenerator>(), GameObject.Find("Plane6").GetComponentInChildren<WaveGenerator>(),
+            GameObject.Find("Plane7").GetComponentInChildren<WaveGenerator>()};
         }
         else
         {
             children = null;
         }
-        wavesEnabled = true;
+        analysis = GameObject.Find("AudioHandler").GetComponent<AudioAnalysis>();
+
+        plane = this.GetComponent<MeshFilter>().mesh;
+
+        defaultVerticies = plane.vertices;
     }
 
     /**
      * Updates the values for the children if there are any
      * */
     public void Update()
-    {
+    {       
+
         Generate();
 
         if(children != null)
@@ -54,7 +66,7 @@ public class WaveGenerator : MonoBehaviour
             for (int i = 0; i < children.Length; i++)
             {
                 children[i].frequency = this.frequency;
-                children[i].wavesEnabled = this.wavesEnabled;
+                children[i].sendWave = this.sendWave;
                 children[i].detailAmount = this.detailAmount;
                 children[i].speed = this.speed;
             }
@@ -74,9 +86,9 @@ public class WaveGenerator : MonoBehaviour
         int j = 0;
 
         //iterate through all of the verticies in the mesh
-        for(int columns = 0; columns < 11; columns++) 
+        for (int columns = 0; columns < 11; columns++)
         {
-            for(int rows = 0; rows < 11; rows++)
+            for (int rows = 0; rows < 11; rows++)
             {
                 DetermineMovement(i, j);
                 i++;
@@ -84,6 +96,7 @@ public class WaveGenerator : MonoBehaviour
             j++;
 
         }
+
 
         //set the deformed verticies to the mesh
         plane.SetVertices(new List<Vector3>(verticies));
@@ -112,18 +125,40 @@ public class WaveGenerator : MonoBehaviour
      * */
     private void DetermineMovement(int columns, int rows)
     {
-        if (wavesEnabled)
+        
+        if(analysis.source.isPlaying)
         {
             verticies[columns].z = 5 * Mathf.PerlinNoise(Time.time/speed + (verticies[columns].x + this.gameObject.transform.position.x) / detailAmount, //Replace the Mathf.Perlin with data collected from AudioSource
                 Time.time / speed + (verticies[columns].y + this.gameObject.transform.position.y) / detailAmount) * frequency;
             verticies[columns].z -= rows;
+
         }
-        else{
-            verticies[columns].z = 5 * Mathf.PerlinNoise((verticies[columns].x + this.gameObject.transform.position.x) / detailAmount,
-                (verticies[columns].y + this.gameObject.transform.position.y) / detailAmount) * frequency;
-            verticies[columns].z -= rows;
+        else
+        {
+            verticies[columns].z = Mathf.Lerp(verticies[columns].z, defaultVerticies[columns].z, 1f);
         }
-     
+        
+
     }
+
+    //public void checkPeaks()
+    //{
+    //    int indexToAnalyze = analysis.getIndexFromTime(3.6f) / 1024;
+    //    for(int i = 0; i <= indexToAnalyze; i++)
+    //    {
+
+    //        SpectralFluxInfo sfSample = updatingSamples[i];
+
+    //        if (sfSample.isPeak)
+    //        {
+    //            lock(new object())
+    //            {
+    //                sendWave = true;
+    //            }
+                
+    //        }
+    //    }
+    //    endedThread = true;
+    //}
 
 }

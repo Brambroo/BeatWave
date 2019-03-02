@@ -21,7 +21,7 @@ public class CameraShake : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !(player.transform.position.y > 7.5))
         {
             ShakeCamera(0.1f);
         }
