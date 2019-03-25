@@ -30,7 +30,7 @@ public class WaveGenerator : MonoBehaviour
 
     private Mesh otherPlane;
     private AudioAnalysis analysis;
-    public int bpm;
+    public float bpm;
     //private Thread th;
     //private bool endedThread = false;
 
@@ -128,6 +128,7 @@ public class WaveGenerator : MonoBehaviour
         
         if(analysis.source.isPlaying)
         {
+            speed = analysis.GetComponent<RhythmTool>().pitch;
             verticies[columns].z = 5 * Mathf.PerlinNoise(Time.time/speed + (verticies[columns].x + this.gameObject.transform.position.x) / detailAmount, //Replace the Mathf.Perlin with data collected from AudioSource
                 Time.time / speed + (verticies[columns].y + this.gameObject.transform.position.y) / detailAmount) * frequency;
             verticies[columns].z -= rows;
