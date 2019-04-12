@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
 
     public void StartFileBrowser()
     {
-        path = FileBrowser.OpenSingleFile("wav");
+        path = FileBrowser.OpenSingleFile("", "", new string[] {"wav" });
         Debug.Log("Selected file: " + path);
 
         if(path != "")

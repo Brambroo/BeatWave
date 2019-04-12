@@ -16,15 +16,20 @@ public class BackgroundColorChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //grab the camera's renderer
         backgroundRenderer = this.gameObject.GetComponent<Renderer>();
+
+        //initalize all of the possible colors
         colors = new Color[] { Color.blue, Color.cyan, Color.green, Color.magenta.gamma, Color.red, Color.yellow, Color.gray, Color.white };
     }
 
     // Update is called once per frame
     void Update()
     {
+        //add realtime to when to change
         whenToChange += Time.deltaTime;
 
+        //if it's time to change colors
         if(whenToChange > interval)
         {
             if(index == colors.Length-1)

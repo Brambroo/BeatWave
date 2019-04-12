@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3085144689653898700}
   m_Layer: 0
   m_Name: enemySharp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -22,6 +22,7 @@ public class SpawnScript : MonoBehaviour
     private System.Random rand;
     private bool hasSpawned = false;
 
+
     private int num;
 
     // Start is called before the first frame update
@@ -69,12 +70,5 @@ public class SpawnScript : MonoBehaviour
                 }
             }
         }
-    }
-
-    void MakeEnemies()
-    {
-        
-
-        
     }
 }

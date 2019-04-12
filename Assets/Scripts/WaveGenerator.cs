@@ -6,7 +6,9 @@ using System.Threading;
 /**
  * Wave Generation script: derived from https://www.youtube.com/watch?v=f6cAAjMfPs8&list=
  * 
- * Mainly used for testing at the moment, later the audio analysis will be used to feed the wave movement and will be changed acordingly
+ * Has been altered in several ways. so it fits better within the project.
+ * 
+ * Used mainly for visual effect for the backgrounds
  * 
  **/
 public class WaveGenerator : MonoBehaviour

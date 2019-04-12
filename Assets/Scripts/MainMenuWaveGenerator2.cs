@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Wave Generation script: derived from https://www.youtube.com/watch?v=f6cAAjMfPs8&list=
+ * 
+ * Has been altered in several ways. so it fits better within the project.
+ * 
+ * Used mainly for visual effect for the backgrounds
+ * 
+ **/
 public class MainMenuWaveGenerator2 : MonoBehaviour
 {
     [Range(0.1f, 20.0f)] //Creates a slider in the inspector
@@ -22,10 +30,7 @@ public class MainMenuWaveGenerator2 : MonoBehaviour
 
     private Mesh otherPlane;
 
-    public void Awake()
-    {
-
-    }
+    
 
     public void Start()
     {
@@ -43,8 +48,6 @@ public class MainMenuWaveGenerator2 : MonoBehaviour
 
     public void Update()
     {
-
-
         Generate();
 
         if (children != null)
@@ -99,9 +102,10 @@ public class MainMenuWaveGenerator2 : MonoBehaviour
 
     private void DetermineMovement(int columns, int rows)
     {
+        //doesn't use audio anaylsis to drive the wave generation
         if (wavesEnabled)
         {
-            verticies[columns].z = 5 * Mathf.PerlinNoise(Time.time / speed + (verticies[columns].x + this.gameObject.transform.position.x) / detailAmount, //Replace the Mathf.Perlin with data collected from AudioSource
+            verticies[columns].z = 5 * Mathf.PerlinNoise(Time.time / speed + (verticies[columns].x + this.gameObject.transform.position.x) / detailAmount,
                 Time.time / speed + (verticies[columns].y + this.gameObject.transform.position.y) / detailAmount) * frequency;
             verticies[columns].z -= rows;
         }
@@ -115,14 +119,4 @@ public class MainMenuWaveGenerator2 : MonoBehaviour
 
     }
 
-    IEnumerator Example()
-    {
-        print(Time.time);
-        yield return new WaitForSecondsRealtime(1);
-        print(Time.time);
-        while (true)
-        {
-            Generate();
-        }
-    }
 }
