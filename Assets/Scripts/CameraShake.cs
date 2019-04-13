@@ -35,7 +35,7 @@ public class CameraShake : MonoBehaviour
      * */
     private void ShakeCamera(float length)
     {
-        shakeamount = 1.0f;
+        shakeamount = 1.5f;
 
         //will continue to shake until canceled
         InvokeRepeating("Shake", 0f, 0.1f);

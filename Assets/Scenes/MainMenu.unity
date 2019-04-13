@@ -796,7 +796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -86.600006}
+  m_AnchoredPosition: {x: 0, y: -112.30001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &259820816
@@ -900,7 +900,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f885879b41694cf42a211743da6e9ed2, type: 3}
-    m_FontSize: 18
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -912,8 +912,10 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Click on the \"Play\" button to choose a .wav file to upload!\n\nEnemies
-    will be spawned to the beat of the song, \nso try and hit them if you can!\n\nHit
-    \"Space\" to jump and to slam back down!\nHit \"Esc\" to go back to the Main Menu"
+    will be spawned to the beat of the song, \nso try and hit them if you can!\n\nSlam
+    down on the White and Green enemies to defeat them.\nIf you miss a White, you
+    will take damage!\n\nHit \"Space\" to jump and to slam back down!\nHit \"Esc\"
+    to go back to the Main Menu"
 --- !u!222 &263420223
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2013,7 +2015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32, y: -114.6}
+  m_AnchoredPosition: {x: -32, y: -140.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627169931
@@ -2092,7 +2094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -60.6}
+  m_AnchoredPosition: {x: 0, y: -86.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &643074034
@@ -3652,7 +3654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81.1, y: -114.6}
+  m_AnchoredPosition: {x: 81.1, y: -140.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896875334
